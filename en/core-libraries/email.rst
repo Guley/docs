@@ -132,6 +132,26 @@ change the configuration data. An example transport configuration looks like::
         'password' => 'secret',
         'className' => 'Smtp'
     ]);
+    
+    TransportFactory::setConfig('Smtp', [
+        'host' => 'xxxxxx',
+        'port' => 587,
+        'username' => 'my@example.com',
+        'password' => 'secret',
+        'className' => 'Smtp',
+        'timeout' => 60,
+        'client' => null,
+        'tls' => true,
+        'context' => [ /*if tls is true*/
+             'ssl' => [
+                  'verify_peer' => false,
+                  'verify_peer_name' => false,
+                  'allow_self_signed' => true
+              ]
+         ],
+         'url' => env('EMAIL_TRANSPORT_DEFAULT_URL', null),
+    ]);
+    
 
 You can configure SSL SMTP servers, like Gmail. To do so, put the ``ssl://``
 prefix in the host and configure the port value accordingly. You can also
